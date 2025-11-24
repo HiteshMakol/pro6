@@ -6,7 +6,7 @@ inputs:
         required: false
         default: 'true'
 outputs: 
-    cache:
+    cache-used:
         description: 'Whether dependencies were loaded from cache'
         value: ${{ steps.install.outputs.cache }}
 runs:
