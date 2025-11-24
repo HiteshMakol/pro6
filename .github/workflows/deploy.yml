@@ -24,7 +24,7 @@ jobs:
         with:
           caching: 'false'
       - name: Output dependency cache status
-        run: ${{ steps.load-deps.outputs.cache-used }}
+        run: echo "${{ steps.load-deps.outputs.cache-used }}"
       - name: Test code
         id: run-tests
         run: npm run test
