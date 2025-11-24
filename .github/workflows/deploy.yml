@@ -19,9 +19,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & Cache dependencies
+        id: load-deps
         uses: ./.github/workflows/actions/cached-deps
         with:
           caching: 'false'
+      - name: Output dependency cache status
+        run: echo "Dependencies loaded from cache: ${{ steps.load-deps.outputs.cache }}"
       - name: Test code
         id: run-tests
         run: npm run test

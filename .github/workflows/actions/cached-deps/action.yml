@@ -5,6 +5,10 @@ inputs:
         description: 'Whether to cache dependencies'
         required: false
         default: 'true'
+outputs: 
+    cache:
+        description: 'Whether dependencies were loaded from cache'
+        value: ${{ steps.install.outputs.cache }}
 runs:
   using: 'composite'
   steps:
@@ -19,4 +23,6 @@ runs:
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true' || inputs.caching == 'false'
       run: npm ci
+      id: install
+      run: echo "cache=${{ inputs.caching }}"
       shell: bash
